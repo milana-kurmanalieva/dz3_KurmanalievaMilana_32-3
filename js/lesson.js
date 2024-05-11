@@ -18,6 +18,7 @@ phoneButton.onclick = () => {
 const tabContentBlocks = document.querySelectorAll('.tab_content_block')
 const tabs = document.querySelectorAll('.tab_content_item')
 const tabsParent = document.querySelector('.tab_content_items')
+let tabNumber = 0
 
 const hideTabContent = ()=>{
     tabContentBlocks.forEach(tabCard =>{
@@ -31,6 +32,7 @@ const hideTabContent = ()=>{
 const showTabContent = (tabIndex = 0)=>{
     tabContentBlocks[tabIndex].style.display = 'block'
     tabs[tabIndex].classList.add('tab_content_item_active')
+    tabNumber=tabIndex
 }
 
 hideTabContent()
@@ -47,14 +49,14 @@ tabsParent.onclick = (event) => {
     }
 }
 
-const tabsAuto = (i = 0) => {
+const tabsAuto = () => {
     setInterval(() => {
-        i++
-        if (i > tabContentBlocks.length - 1){
-            i = 0
+        tabNumber++
+        if (tabNumber > tabContentBlocks.length - 1){
+            tabNumber = 0
         }
         hideTabContent()
-        showTabContent(i)
+        showTabContent(tabNumber)
     }, 3000)
 }
 tabsAuto()
